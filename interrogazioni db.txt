@@ -1,0 +1,62 @@
+#prima query
+
+SELECT `id`, `degree_id`, `name`, `surname`, `date_of_birth`, `fiscal_code`, `enrolment_date`, `registration_number`, `email` 
+FROM `students` 
+WHERE YEAR(`date_of_birth`) LIKE '1990' 
+
+---------------
+#seconda query
+
+SELECT `id`, `degree_id`, `name`, `description`, `period`, `year`, `cfu`, `website` 
+FROM `courses` 
+WHERE `cfu` > 10 
+
+---------------
+#terza query
+
+SELECT `id`, `degree_id`, `name`, `surname`, `date_of_birth`, `fiscal_code`, `enrolment_date`, `registration_number`, `email` 
+FROM `students` 
+WHERE datediff(CURRENT_DATE(),`date_of_birth` )>10950 
+---------------
+#quarta query
+
+SELECT `id`, `degree_id`, `name`, `description`, `period`, `year`, `cfu`, `website` 
+FROM `courses` 
+WHERE `year` = 1 AND `period` LIKE 'I %'
+---------------
+#quinta query
+
+SELECT `id`, `course_id`, `date`, `hour`, `location`, `address` 
+FROM `exams` 
+WHERE HOUR(`hour`)>=14 AND `date` = '2020-06-20' 
+---------------
+#sesta query
+
+SELECT `id`, `department_id`, `name`, `level`, `address`, `email`, `website` 
+FROM `degrees` 
+WHERE `level` LIKE 'magistrale' 
+---------------
+#settima query
+
+SELECT COUNT(`id`) 
+FROM `departments` ;
+---------------
+#ottava query
+
+SELECT `id`, `name`, `surname`, `phone`, `email`, `office_address`, `office_number` 
+FROM `teachers` 
+WHERE `phone` IS NULL;
+---------------
+#query aggiuntiva 1//numero di esami che si svolgono al piano 4
+
+SELECT COUNT(`course_id`) 
+FROM `exams` 
+WHERE `location` LIKE 'Piano 4' 
+---------------
+#query aggiuntiva 2//insegnanti che hanno il cognome che inzia con la g
+
+SELECT `id`, `name`, `surname`, `phone`, `email`, `office_address`, `office_number` 
+FROM `teachers` 
+WHERE `surname` LIKE 'G%' 
+
+
