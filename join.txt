@@ -1,0 +1,54 @@
+#1  SELECT * FROM students INNER JOIN degrees
+    ON students.degree_id = degrees.id
+    WHERE degrees.name LIKE "%Economia"
+
+
+#2  SELECT * FROM degrees INNER JOIN departments
+    ON degrees.department_id = departments.id
+    WHERE departments.name LIKE "%Neuroscienze"
+
+
+#3  SELECT * FROM courses
+    INNER JOIN teachers
+    INNER JOIN course_teacher
+    ON course_teacher.course_id = courses.id
+    AND course_teacher.teacher_id = teachers.id
+    WHERE teachers.id = 44
+
+
+#4  SELECT * FROM students
+    INNER JOIN degrees
+    ON students.degree_id = degrees.id
+    INNER JOIN departments
+    ON degrees.department_id = departments.id
+    ORDER BY students.surname, students.name
+
+
+#5  SELECT * FROM degrees
+    INNER JOIN courses
+    ON courses.degree_id = degrees.id
+    INNER JOIN course_teacher
+    ON course_teacher.course_id = courses.id
+    INNER JOIN teachers
+    ON course_teacher.teacher_id = teachers.id
+
+
+#6  SELECT DISTINCT teachers.id, teachers.surname as "cognome"
+    FROM teachers
+    INNER JOIN course_teacher
+    ON teachers.id = course_teacher.teacher_id
+    INNER JOIN courses
+    on course_teacher.course_id = courses.id
+    INNER JOIN degrees
+    ON courses.degree_id = degrees.id
+    INNER JOIN departments
+    on degrees.department_id = departments.id
+    WHERE departments.name LIKE "%matematica"
+
+
+#7  SELECT courses.name, COUNT(courses.id) as numero_di_ripetizioni ,exams.course_id ,students.id, students.name 
+    FROM `courses` 
+    INNER JOIN exams on courses.id = exams.course_id 
+    INNER JOIN exam_student ON exam_student.exam_id = exams.id 
+    INNER JOIN students ON exam_student.student_id = students.id 
+    GROUP BY courses.id, students.id
